@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawsForAll | Pet-Friendly Campaign</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4e9f3d;
+            --secondary: #1e5128;
+            --accent: #d8e9a8;
+            --light: #f5f5f5;
+            --dark: #191a19;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Neue', cursive, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            font-size: 1.8rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(78, 159, 61, 0.3);
+            background-color: var(--secondary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 4rem;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1498&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Campaign Section */
+        .campaign {
+            padding: 6rem 0;
+            background-color: var(--accent);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .campaign-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .campaign-card {
+            background-color: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .campaign-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .campaign-icon {
+            background-color: var(--primary);
+            color: white;
+            font-size: 2rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .campaign-info {
+            padding: 1.5rem;
+        }
+        
+        .campaign-info h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        /* Pets Section */
+        .pets {
+            padding: 6rem 0;
+            background-color: white;
+        }
+        
+        .pets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pet-card {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .pet-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .pet-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .pet-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .pet-info {
+            padding: 1.5rem;
+            background-color: var(--light);
+        }
+        
+        .pet-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        .pet-info p {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        /* Tips Section */
+        .tips {
+            padding: 6rem 0;
+            background-color: var(--light);
+        }
+        
+        .tips-container {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .tips-image {
+            flex: 1;
+        }
+        
+        .tips-image img {
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tips-content {
+            flex: 1;
+        }
+        
+        .tips-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+        }
+        
+        .tip-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tip-icon {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            padding: 4rem 0;
+            background-color: var(--secondary);
+            color: white;
+            text-align: center;
+        }
+        
+        .newsletter-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 2rem;
+            font-size: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--gray);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tips-container {
+                flex-direction: column;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fas fa-paw"></i>
+                    <span>PawsForAll</span>
+                </a>
+                <div class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#campaign">Campaign</a>
+                    <a href="#pets">Adopt</a>
+                    <a href="#tips">Pet Care</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <a href="#donate" class="btn">Donate</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Making the World More Pet-Friendly</h1>
+                <p>Join our campaign to create safer, happier communities for pets and their humans. Together we can advocate for pet-friendly policies, promote adoption, and educate about responsible pet ownership.</p>
+                <a href="#campaign" class="btn">Join the Movement</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campaign Section -->
+    <section id="campaign" class="campaign">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Pet-Friendly Initiatives</h2>
+                <p>We're working on multiple fronts to create a better world for our furry friends</p>
+            </div>
+            <div class="campaign-cards">
+                <div class="campaign-card">
+                    <div class="campaign-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="campaign-info">
+                        <h3>Pet-Friendly Housing</h3>
+                        <p>Advocating for rental policies that welcome pets and reduce unnecessary restrictions and fees.</p>
+                    </div>
+                </div>
+                <div class="campaign-card">
+                    <div class="campaign-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="campaign-info">
+                        <h3>Dining With Pets</h3>
+                        <p>Promoting pet-friendly outdoor dining options and proper pet etiquette in public spaces.</p>
+                    </div>
+                </div>
+                <div class="campaign-card">
+                    <div class="campaign-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <div class="campaign-info">
+                        <h3>Parks & Recreation</h3>
+                        <p>Creating more off-leash areas and dog parks with proper amenities in every neighborhood.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pets Section -->
+    <section id="pets" class="pets">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pets Looking for Homes</h2>
+                <p>Consider adopting one of these wonderful animals waiting for their forever home</p>
+            </div>
+            <div class="pets-grid">
+                <div class="pet-card">
+                    <div class="pet-image">
+                        <img src="https://images.unsplash.com/photo-1583511655826-05700442b31b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Dog for adoption">
+                    </div>
+                    <div class="pet-info">
+                        <h3>Buddy</h3>
+                        <p>3 year old Labrador mix. Loves playing fetch and going for long walks.</p>
+                        <a href="#" class="btn">Meet Buddy</a>
+                    </div>
+                </div>
+                <div class="pet-card">
+                    <div class="pet-image">
+                        <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80" alt="Cat for adoption">
+                    </div>
+                    <div class="pet-info">
+                        <h3>Luna</h3>
+                        <p>2 year old domestic shorthair. Very affectionate and loves cuddles.</p>
+                        <a href="#" class="btn">Meet Luna</a>
+                    </div>
+                </div>
+                <div class="pet-card">
+                    <div class="pet-image">
+                        <img src="https://images.unsplash.com/photo-1591769225440-811ad7d6eab2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Rabbit for adoption">
+                    </div>
+                    <div class="pet-info">
+                        <h3>Cotton</h3>
+                        <p>1 year old Holland Lop. Gentle and litter-trained.</p>
+                        <a href="#" class="btn">Meet Cotton</a>
+                    </div>
+                </div>
+                <div class="pet-card">
+                    <div class="pet-image">
+                        <img src="https://images.unsplash.com/photo-1623387641168-d9803ddd3f35?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Bird for adoption">
+                    </div>
+                    <div class="pet-info">
+                        <h3>Sky</h3>
+                        <p>4 year old Cockatiel. Very social and loves singing.</p>
+                        <a href="#" class="btn">Meet Sky</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section id="tips" class="tips">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pet Care Tips</h2>
+                <p>Essential advice for keeping your pets happy and healthy</p>
+            </div>
+            <div class="tips-container">
+                <div class="tips-image">
+                    <img src="https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80" alt="Woman with dog">
+                </div>
+                <div class="tips-content">
+                    <h3>Responsible Pet Ownership</h3>
+                    <div class="tip-item">
+                        <div class="tip-icon">
+                            <i class="fas fa-bone"></i>
+                        </div>
+                        <div>
+                            <h4>Proper Nutrition</h4>
+                            <p>Feed your pet a balanced diet appropriate for their age, size, and health needs.</p>
+                        </div>
+                    </div>
+                    <div class="tip-item">
+                        <div class="tip-icon">
+                            <i class="fas fa-syringe"></i>
+                        </div>
+                        <div>
+                            <h4>Regular Vet Visits</h4>
+                            <p>Annual check-ups and vaccinations are essential for your pet's wellbeing.</p>
+                        </div>
+                    </div>
+                    <div class="tip-item">
+                        <div class="tip-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div>
+                            <h4>Exercise & Play</h4>
+                            <p>Pets need daily physical activity and mental stimulation to stay happy.</p>
+                        </div>
+                    </div>
+                    <div class="tip-item">
+                        <div class="tip-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div>
+                            <h4>Identification</h4>
+                            <p>Microchip your pet and ensure they wear a collar with ID tags at all times.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <div class="container">
+            <h2>Stay Updated on Pet-Friendly News</h2>
+            <p>Subscribe to our newsletter for campaign updates, pet care tips, and adoption stories</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Your email address">
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>PawsForAll</h3>
+                    <p>Dedicated to creating a more pet-friendly world through advocacy, education, and community building.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#campaign">Campaign</a></li>
+                        <li><a href="#pets">Adopt a Pet</a></li>
+                        <li><a href="#tips">Pet Care</a></li>
+                        <li><a href="#donate">Donate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Pet-Friendly Housing Guide</a></li>
+                        <li><a href="#">Traveling With Pets</a></li>
+                        <li><a href="#">Local Pet Laws</a></li>
+                        <li><a href="#">Emergency Preparedness</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i>Bhopal </li>
+                        <li><i class="fas fa-phone"></i> 8815672077</li>
+                        <li><i class="fas fa-envelope"></i> rushikeshc2003@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 PawsForAll. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
